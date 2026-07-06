@@ -1,0 +1,8 @@
+name = "mleague-stats"
+compatibility_date = "2026-07-06"
+pages_build_output_dir = "build"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "mleague-stats-db"
+database_id = "9ef9b332-b4a8-4559-8cba-7cda526975cb"

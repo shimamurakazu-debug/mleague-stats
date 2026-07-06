@@ -1,38 +1,310 @@
-.App {
+/* 全体の背景と文字色（Mリーグ風ダークモード） */
+body {
+  margin: 0;
+  background-color: #12161a;
+  color: #e9ecef;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.m-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* ヘッダー */
+.m-header {
+  text-align: center;
+  padding: 24px 0 16px 0;
+  border-bottom: 2px solid #1a2229;
+}
+
+.m-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  background: linear-gradient(45deg, #00bdcc, #00ff87);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.m-header .subtitle {
+  margin: 6px 0 0 0;
+  font-size: 13px;
+  color: #7b8893;
+}
+
+/* 📅 シーズン選択タブ */
+.tab-container {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.tab-btn {
+  background-color: #1a2229;
+  border: 1px solid #26323c;
+  color: #a0aec0;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  background-color: #222d37;
+  color: #fff;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #00bdcc, #007780);
+  border-color: #00bdcc;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 189, 204, 0.2);
+}
+
+/* 🏆 ステージ選択ミニボタン */
+.stage-container {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.stage-btn {
+  background-color: #151a1e;
+  border: 1px solid #222c35;
+  color: #7b8893;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.stage-btn.active {
+  background-color: #e9ecef;
+  border-color: #e9ecef;
+  color: #12161a;
+}
+
+/* 📊 順位表テーブル */
+.main-content {
+  margin-top: 24px;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  background-color: #1a2229;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border: 1px solid #222c35;
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.stats-table th {
+  background-color: #151a1e;
+  padding: 14px 16px;
+  font-size: 13px;
+  color: #7b8893;
+  border-bottom: 1px solid #222c35;
+  font-weight: 600;
+}
+
+.stats-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #1f2933;
+  vertical-align: middle;
+}
+
+/* 🥇 順位バッジ */
+.rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background-color: #2d3748;
+  color: #fff;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* トップ3は少しリッチにする */
+.r-1 .rank-badge { background: linear-gradient(135deg, #ffd700, #b8860b); color: #000; }
+.r-2 .rank-badge { background: linear-gradient(135deg, #c0c0c0, #708090); color: #000; }
+.r-3 .rank-badge { background: linear-gradient(135deg, #cd7f32, #8b4513); }
+
+/* チームセル（ロゴ＋文字） */
+.team-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.team-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.team-full-name {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.team-meta {
+  font-size: 11px;
+  color: #7b8893;
+  margin-top: 2px;
+}
+
+/* ポイント */
+.point-cell {
+  text-align: right;
+}
+
+.point-val {
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.point-val.plus { color: #00ff87; }
+.point-val.minus { color: #ff4d4d; }
+
+/* その他 */
+.x-cell {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.x-link {
+  text-decoration: none;
+  font-size: 16px;
+  display: inline-block;
+  transition: transform 0.2s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.x-link:hover {
+  transform: scale(1.3);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.no-data {
+  text-align: center;
+  padding: 40px 20px;
+  color: #7b8893;
+  line-height: 1.6;
+  background-color: #1a2229;
+  border-radius: 8px;
+  border: 1px dashed #2d3748;
+}
+
+.loading-spinner {
+  text-align: center;
+  padding: 40px;
+  color: #00bdcc;
+  font-weight: bold;
+}
+
+/* 🛠️ 管理画面用追加スタイル */
+.admin-status-box {
+  background-color: #222d37;
+  border-left: 4px solid #00bdcc;
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.admin-selector-panel {
+  margin-top: 16px;
+  background-color: #151a1e;
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 1px solid #222c35;
+}
+
+.admin-selector-panel select {
+  background-color: #222d37;
   color: white;
+  border: 1px solid #3a4a58;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+.admin-input {
+  background-color: #12161a;
+  border: 1px solid #3a4a58;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.rank-input {
+  width: 50px;
+  text-align: center;
+}
+
+.point-input {
+  width: 120px;
+  text-align: right;
+  font-family: monospace;
+}
+
+.admin-save-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #00ff87, #00b359);
+  color: #12161a;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: opacity 0.2s;
+}
+
+.admin-save-btn:hover {
+  opacity: 0.9;
+}
+
+.admin-save-btn:disabled {
+  background: #4a5568;
+  color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.back-link {
+  color: #00bdcc;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.back-link:hover {
+  text-decoration: underline;
 }
